@@ -1,0 +1,14 @@
+<ng-container>
+    <span class="main-title">{{ dataModel.title }}</span>
+    <div>
+      <ngx-charts-advanced-pie-chart
+        [view]="dataModel.pieChartConfig.view"
+        [scheme]="dataModel.pieChartConfig.colorScheme"
+        [results]="dataModel.items"
+        [activeEntries]="dataModel.activeEntries"
+        [gradient]="dataModel.pieChartConfig.gradient"
+      >
+      </ngx-charts-advanced-pie-chart>
+    </div>
+</ng-container>
+  

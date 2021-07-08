@@ -1,0 +1,6 @@
+<ngx-spinner  type="ball-spin-fade-rotating"></ngx-spinner>
+<span class="root-div-element" *ngIf="ENVIRONMENT.debugWidget">
+    <router-outlet></router-outlet>
+</span>
+
+<router-outlet  *ngIf="!ENVIRONMENT.debugWidget"></router-outlet>

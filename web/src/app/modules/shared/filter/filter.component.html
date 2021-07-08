@@ -1,0 +1,24 @@
+<div id="accordion" class="accordion">
+    <div>
+        <div>
+            <div>
+                <span class="filter-title">Filters</span>
+                <span class="float-right">
+                    <ng-content select=".filter-widget-reset-slot"></ng-content>
+                </span>
+            </div>
+            <div class="filter-subtext">Please select filter options from below</div>
+        </div>
+        <div>
+            <div>
+                <div class="card-body filter-spacing">
+                    <ng-content select=".filter-widget-slot"></ng-content>
+                </div>
+                <div class="card-body apply-btn-spacing">
+                    <ng-content select=".button-slot"></ng-content>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

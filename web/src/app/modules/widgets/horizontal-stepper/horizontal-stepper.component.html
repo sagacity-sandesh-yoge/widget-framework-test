@@ -1,0 +1,19 @@
+<ul class="ml-0 pl-0">
+    <li *ngFor="let item of dataModel.items" class="mb-2 mb-md-0" [ngClass]="item.status">
+
+        <div class="a stepper-badge d-flex flex-row align-items-center justify-content-center"  (click)="onClick(clickEvent.ON_ITEM_CLICK, item)">
+            <i class="material-icons mat_icon_size"> {{item.icon}}</i>
+            
+        </div>
+        <div class="status_tittle d-flex align-items-center">
+           <span>
+               <i   class="material-icons" [ngClass]="{'visited-icon':item.statusIcon=='check_circle',
+               'not-vistited-icon':item.statusIcon=='hourglass_full',
+               'in-progress-icon':item.statusIcon=='warning',
+               'active-icon': item.statusIcon=='verified'}"> {{item.statusIcon}}</i> 
+
+        </span> 
+            <span class="title fontbold">{{item.name}}</span>
+        </div>
+    </li>
+</ul>

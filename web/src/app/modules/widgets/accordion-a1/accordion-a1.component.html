@@ -1,0 +1,76 @@
+<div class="main-title pb-2">{{dataModel.title}}</div>
+<div class="w-100 mb-2 rounded-0 ">
+    <div class="" [@openClose]="isOpen ? 'open' : 'closed'">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+            <!-- <ng-container matColumnDef="{{column}}" *ngFor="let column of this.displayedColumns"> -->
+            <ng-container *ngFor="let column of dataModel.columndata; let i = index;" matColumnDef="{{column.field}}">
+
+                <th mat-header-cell *matHeaderCellDef class="headerclass"> {{column.name}} </th>
+                <td mat-cell *matCellDef="let element">
+                    <span *ngIf="element[column.field]!='visibility'"> {{element[column.field]}} </span>
+                    <span *ngIf="element[column.field]=='visibility'" style="cursor: pointer;" [class.example-expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element">
+                        <mat-icon style="color:blue;" *ngIf="element != expandedElement" >expand_more</mat-icon>
+                        <mat-icon style="color:blue;" *ngIf="element == expandedElement" >expand_less</mat-icon>
+                    </span>
+                </td>
+
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" class="p-0" [attr.colspan]="this.displayedColumns.length">
+                    <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        <!-- <div class="example-element-diagram">
+                            <div class="example-element-position"> {{element.position}} </div>
+                            <div class="example-element-symbol"> {{element.symbol}} </div>
+                            <div class="example-element-name"> {{element.name}} </div>
+                            <div class="example-element-weight"> {{element.requestnumber}} </div>
+                        </div> -->
+                        <!-- <div class="example-element-description">
+                            {{element.description}}
+                            <span class="example-element-description-attribution"> -- Wikipedia </span>
+                        </div> -->
+                        <div class="example-element-description w-100" style="background-color: antiquewhite;">
+                            <table class="w-100 samewidthtable text-center">
+                                <tr>
+                                    <th>
+                                        Department Name
+                                    </th>
+                                    <th>
+                                        Department Case Status
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{element.DeptName}}
+                                    </td>
+                                    <td>
+                                        {{element.status}}
+                                    </td>
+                                    <td>
+                                        <mat-icon style="color:blue" (click)="onClick(clickEvent.ON_ITEM_CLICK,element)" >{{element.iconanme}}</mat-icon>
+
+                                    </td>
+                                    <td>
+                                        <mat-icon style="color:blue" (click)="onClick(clickEvent.ON_SUBMIT,element)" >{{element.iconname2}}</mat-icon>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="this.displayedColumns"></tr>
+            <tr mat-row *matRowDef="let element; columns: this.displayedColumns;" class="example-element-row">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+
+        <mat-paginator [pageSize]="dataModel.pageSize" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
+</div>

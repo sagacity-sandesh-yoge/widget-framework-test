@@ -1,0 +1,27 @@
+<div class="w-100">
+    <ng-container [ngSwitch]="dataModel.viewerType">
+
+        <ngx-doc-viewer *ngSwitchCase="
+        (dataModel.viewerType == VIEWER_TYPE.GOOGLE || 
+        dataModel.viewerType == VIEWER_TYPE.OFFICE)  ? 
+        dataModel.viewerType:''
+        " [url]="dataModel.url" [viewer]="dataModel.viewerType" style="width:100%;height:93vh;"></ngx-doc-viewer>
+
+
+        <img class="img-fluid" *ngSwitchCase="VIEWER_TYPE.IMAGE" [src]="dataModel.url" alt="No Image">
+
+<div class="text-center"
+
+*ngSwitchCase="VIEWER_TYPE.VIDEO">
+    <video 
+    autoplay
+    controls>
+        <source [src]="dataModel.url">
+        Browser does not support the video.
+    </video>
+</div>
+        
+
+    </ng-container>
+
+</div>

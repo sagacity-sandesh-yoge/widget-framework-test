@@ -1,0 +1,10 @@
+<div #container>
+    <!-- <div class="main-title pb-2">{{dataModel.title}}</div> -->
+
+    <ngx-charts-bar-vertical-stacked [view]="[container.offsetWidth, dataModel.barChartConfig.view[1]]" [scheme]="dataModel.barChartConfig.colorScheme" [results]="dataModel.items" [gradient]="dataModel.barChartConfig.gradient" [xAxis]="dataModel.barChartConfig.xAxis"
+        [yAxis]="dataModel.barChartConfig.yAxis" [legend]="dataModel.barChartConfig.legend" [showXAxisLabel]="dataModel.barChartConfig.showXAxisLabel" [showYAxisLabel]="dataModel.barChartConfig.showYAxisLabel" [xAxisLabel]="dataModel.barChartConfig.xAxisLabel"
+        [yAxisLabel]="dataModel.barChartConfig.yAxisLabel" [legendPosition]="dataModel.barChartConfig.legendPosition" [legendTitle]="dataModel.barChartConfig.legendTitle" [barPadding]="dataModel.barChartConfig.barPadding">
+    </ngx-charts-bar-vertical-stacked>
+
+
+</div>

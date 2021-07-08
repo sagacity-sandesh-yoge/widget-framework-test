@@ -1,0 +1,10 @@
+<mat-card class="rounded height">
+    <span class="main-title">{{dataModel.title}}</span>
+    <div *ngIf="dataModel.showChart==true" class="chart">
+        <div #chart [ngStyle]="dataModel.widgetStyle">
+        </div>
+    </div>
+    <div *ngIf="dataModel.showChart==false" class="nochart">
+        No data available
+    </div>
+</mat-card>

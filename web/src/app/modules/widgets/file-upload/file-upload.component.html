@@ -1,0 +1,71 @@
+
+<div class="row">          
+
+  <div class="col-md-12 col-sm-12">
+    <div>
+      <p-fileUpload
+        name="files"
+        [multiple]="dataModel.item.multiple"
+        [maxFileSize]="dataModel.item.maxFileSize"
+        [accept]="dataModel.item.accept"
+        [auto]="dataModel.item.auto"
+        styleClass="file-upload"
+        [customUpload]="true"
+        [files]="selectedFiles"
+        (onUpload)="onUpload($event)"
+        (uploadHandler)="uploadHandler($event)"
+        (onSelect)="onSelect($event)"
+        [disabled] ="uploadedFiles.length >= 1"
+        chooseLabel="Browse"
+        [uploadLabel]="dataModel.uploadLabel"
+        cancelLabel="Remove"
+        [showUploadButton]="dataModel.showUploadButton"
+      >
+        <ng-template let-file let-files pTemplate="file">
+          <p-progressBar class="label-value" [value]="progressValue"></p-progressBar>
+          <div class="ui-fileupload-row ng-star-inserted">
+            <div>{{ file.name }}</div>
+            <div>{{ file.size }}</div>
+            <div>
+              <button
+                type="button"
+                icon="pi pi-times"
+                pbutton=""
+                ng-reflect-icon="pi pi-times"
+                class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"
+                (click)="onRemove(file)"
+              >
+                <span
+                  aria-hidden="true"
+                  class="ui-button-icon-left ui-clickable pi pi-times"
+                ></span
+                ><span aria-hidden="true" class="ui-button-text ui-clickable"
+                  >ui-btn</span
+                >
+              </button>
+            </div>
+          </div>
+        </ng-template>
+    
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">
+              {{ file.name }} - {{ file.size }} bytes
+            </li>
+          </ul>
+          <div class="col-md-12 col-sm-12 mt-4 text-center" *ngIf="!selectedFiles.length"> 
+
+            <img src="../../../../assets/images/attach_file-24px.png">
+              <ul >
+                <li class="header">Drop your Files here or browse below.</li>
+                <li class="label"> Upload files once you select those</li>
+            </ul>
+          </div>
+        </ng-template>
+
+      </p-fileUpload>
+    </div>
+  </div>
+  
+</div>         
+

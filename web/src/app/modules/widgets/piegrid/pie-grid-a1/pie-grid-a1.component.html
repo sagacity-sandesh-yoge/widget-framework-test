@@ -1,0 +1,11 @@
+<mat-card style="height: 100%;">
+    <!-- <span class="main-title colorblue">{{dataModel.title}}</span> -->
+    <span class="main-title">Bulk Upload Tool Utilization</span>
+    <!-- <div class="vl" [ngStyle]="dataModel.vlStyle"></div> -->
+    <div #checkwidthHeight id="pie" class="height">
+        <ngx-charts-pie-grid [scheme]="colorScheme" [results]="dataModel.items">
+        </ngx-charts-pie-grid>
+
+    </div>
+
+</mat-card>

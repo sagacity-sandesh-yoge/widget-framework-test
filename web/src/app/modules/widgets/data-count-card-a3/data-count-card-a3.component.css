@@ -1,0 +1,21 @@
+.left-block {
+    flex: 0 1 40%;
+}
+
+.right-block {
+    flex: 0 1 60%;
+}
+
+.vertical-devider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.horizontal-devider {
+   width: 75%;
+}
+
+.data-count-card-a3 .title{
+    background-color: var(--theme-color);
+    color: var(--text-white);
+}

@@ -1,0 +1,64 @@
+
+<!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="vertical-menu-background">
+   
+
+    <mat-tree-node *matTreeNodeDef="let node"  
+     (click)=" !node.isDisable ? onClick(clickEvent.ON_ITEM_CLICK, node) : false;  activeNode= node" [hidden]="!node.isShow" 
+     matTreeNodePadding matTreeNodePaddingIndent="10"
+        class="pointer  nav-menu-node"  [ngClass]="{ 'active-link': node.id==dataModel.activeNodeId }"  [style.background-color]="node.backgroundcolor ? node.backgroundcolor: ''">
+
+        <ng-container *ngIf="node.tooltip; else showicon">
+            <mat-icon [matTooltip]="node.tooltip" matTooltipPosition="left" class="shift-right"
+                [ngClass]="node.isDisable ? 'menu-title-disabled' : ''">
+                {{node.icon}}
+            </mat-icon>
+        </ng-container>
+        <ng-template #showicon>
+            <mat-icon class="shift-right" [ngClass]="node.isDisable ? 'menu-title-disabled' : ''">
+                {{node.icon}}
+            </mat-icon>
+        </ng-template>
+
+     
+        <span class="pl-2" [ngClass]="node.isDisable ? 'menu-title-disabled' : ''"> {{node.name}} </span>
+        <ng-container *ngIf="node.expandable">
+            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror ">
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+            </button>
+        </ng-container>
+
+
+    </mat-tree-node>
+
+</mat-tree> -->
+
+
+<div class="menu-tabs">
+    <mat-tab-group [selectedIndex]="dataModel.selectedIndex" 
+    (selectedTabChange)="onTabChanged($event)">
+        <mat-tab *ngFor="let menu of  dataModel.filteredMenuoptions"
+         [matTooltip]="menu.tooltip"
+          [label]="menu.displayname"
+            [disabled]="menu.isDisable"
+            [aria-label]="menu"
+            >
+            <ng-template mat-tab-label>
+                <div 
+                [ngClass]="menu.code=='alerts' && this.alertsCount!=0?'alertCode d-flex align-items-center justify-content-around':'d-flex align-items-center justify-content-around'"
+                >
+                    <!-- class="d-flex align-items-center justify-content-around" -->
+                    <mat-icon [matTooltip]="menu.tooltip" 
+                    matTooltipPosition="left" class="icon">
+                        {{menu.icon}}
+                    </mat-icon>
+                    <ng-container *ngIf="menu.code=='alerts' && this.alertsCount!=0">
+                        ({{this.alertsCount}})
+                    </ng-container>
+                    <span class="tab-text ml-1">{{menu.displayname}}</span>
+                </div>
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</div>

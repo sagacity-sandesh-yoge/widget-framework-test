@@ -1,0 +1,101 @@
+<!-- <div class="w-100 xspadding">
+    <nav class="navbar navbar-dark navbar-bg sidebar hide-print-content p-lg-0">
+
+        <button class="navbar-toggler2 d-none d-md-block toggleclick" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation" (click)="toggleclick()">
+            <span class="navbar-toggler-icon"></span>
+            <div id="navbar-close" class="d-none">
+                <i class="material-icons mat_icon_size cancelbutton">close</i>
+            </div>
+        </button>
+
+        <app-sidebar class="width"></app-sidebar>
+    </nav>
+
+    <div class="main">
+
+            <div class="topbackground">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                     <img class="float-left logo-background mr-3" src="../../../../assets/images/logo.png">
+                    </div>
+                    <div class="col-6">
+                      <i class="material-icons pointer float-right text-white" (click)="onLogout()"> power_settings_new
+                      </i>
+                      <i class="material-icons pointer float-right text-white mr-2"> settings
+                      </i>
+                    </div>
+                </div>
+            </div>
+
+        <router-outlet></router-outlet>
+    </div> -->
+
+
+
+
+
+
+<div class="w-100 pl-2 pr-2">
+
+    <div class="topbackground">
+        <div class="row align-items-center justify-content-between">
+            <div class="d-flex flex-row p-2">
+                <div class="app-title d-flex flex-row align-items-center">
+                    <img class="app-logo logo-background ml-3 mr-3" src="../../../../assets/images/logo.png">
+                    <div class="header"> CMVR - Type Approval System</div>                
+                </div>
+            </div>
+            <div class="d-flex flex-row mr-3 p-2">
+                <!-- <app-logged-in-user-details></app-logged-in-user-details> -->
+                <!-- <span class="text-style pr-2 welcome-text">
+                    Welcome, <span class="logged-in-user">{{nametitle + ' ' +firstname+' '+ middlename+' '+lastname}}</span>
+                </span> -->
+                <!-- <span > <button [matMenuTriggerFor]="menu" class="more-vert-icon mr-2">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item  (click)="showUserProfile()">
+                      <mat-icon class="logo">account_circle</mat-icon>
+                      <span>User Profile</span>
+                    </button>
+                    <button *ngIf="!isARAIUser()" mat-menu-item (click)="changePassword()">
+                      <mat-icon class="logo">vpn_key</mat-icon>
+                      <span>Change Password</span>
+                    </button>
+                  </mat-menu></span>
+                <span>
+                    <button title="CMVR-TAS User Manual" (click)="downloadUserManual()" class="more-vert-icon mr-2">
+                        <mat-icon>help_outline</mat-icon>
+                    </button>
+                </span> -->
+
+
+                   <i [matMenuTriggerFor]="logout" class="material-icons pointer logo"> power_settings_new</i>
+                   <mat-menu #logout="matMenu">      
+                    <button mat-menu-item (click)="onLogout()">                      
+                      <span class="logout">Are you sure to sign out ?</span>
+                    </button>
+                    <div mat-menu-item class="text-center">
+                        <button type="button" class="text-center btn btn-primary btn-sm logoutbtn"             
+                            (click)="onLogout()">Yes                
+                            </button>
+                        <button type="button" class="text-center btn btn-primary btn-sm logoutbtn" >No                
+                        </button>
+                    </div>
+                  </mat-menu> 
+            </div>
+        </div>
+    </div>
+    <div class="background">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <!-- <app-sidebar></app-sidebar> -->
+
+            </div>
+        </div>
+    </div>
+
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,79 @@
+<mat-table
+  [dataSource]="dataSource"
+  multiTemplateDataRows
+  matSort
+  [matSortDisableClear]="!dataModel.isSort"
+  (matSortChange)="sortData($event)"
+  [matSortActive]="dataModel.defaultSortBy"
+  [matSortDirection]="dataModel.defaultSortDirection"
+>
+  <ng-container
+    *ngFor="let col of dataModel.columndata"
+    [matColumnDef]="col.field"
+  >
+    <mat-header-cell
+      *matHeaderCellDef
+      [mat-sort-header]
+      [disabled]="!col.isSort"
+      class="justify-content-center"
+    >
+      <span>{{ col.name }}</span>  
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let element; let i = index" [ngSwitch]="col.colType">
+      <ng-container *ngSwitchCase="'radio'">
+        <span>
+          <mat-radio-group [(ngModel)]="selectedRowDataId">
+            <mat-radio-button
+              [value]="element[col.field]"
+              (click)="radioButtonClick(element)"
+            >
+              {{ element[col.labelField] }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </span>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'date'">
+        <span class="text-center w-100">
+          {{ element[col.field] | transformDate }}
+        </span>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'datetime'">
+        <span class="text-center w-100">
+          {{ element[col.field] | transformDateTime }}
+        </span>
+      </ng-container>
+      <ng-container *ngSwitchCase="'icon'">
+        <span class="text-center w-100">
+         <mat-icon class="icon" (click)="clickEventHandler(col.clickmethod,i,element,col.eventActionName)"> 
+           {{ element[col.field] }}
+         </mat-icon>
+        </span>
+      </ng-container>
+      <ng-container *ngSwitchCase="undefined">
+        <span class="text-center w-100">
+          {{ element[col.field] }}
+        </span>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container *ngIf="dataModel.showHeader">
+    <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
+  </ng-container>
+
+  <mat-row
+    *matRowDef="let row; columns: getDisplayedColumns()"
+    class="example-element-row"
+  ></mat-row>
+</mat-table>
+
+
+<mat-paginator
+  [pageSize]="dataModel.pageSize"
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+>
+</mat-paginator>

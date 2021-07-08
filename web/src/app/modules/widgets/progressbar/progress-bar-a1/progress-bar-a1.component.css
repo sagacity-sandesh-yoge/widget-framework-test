@@ -1,0 +1,34 @@
+.countcss {
+    font-weight: 600;
+    text-align: center;
+    color: black;
+}
+
+.countcss span {
+    cursor: pointer;
+}
+
+.main-title {
+    color: var(--text-normal-color);
+}
+
+.iconclass {
+    color: #E75B2D!important;
+    font-size: 25px;
+}
+
+.countcss span {
+    cursor: pointer;
+}
+
+mat-progress-bar.blue-color .mat-progress-bar-fill::after {
+    background-color: #4D9BDA;
+}
+
+mat-progress-bar.red-color .mat-progress-bar-fill::after {
+    background-color: red;
+}
+
+.height {
+    height: 100%;
+}

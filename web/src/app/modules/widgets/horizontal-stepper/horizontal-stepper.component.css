@@ -1,0 +1,113 @@
+li {
+    display: inline-block;
+    text-align: center;
+}
+
+li .a {
+    width: 4em;
+    height: 4em;
+    text-align: center !important;
+    line-height: 2em;
+    border-radius: 2.5em;
+    background: #ffffff;
+    /* border: 1px solid #000; */
+    background-color: var(--default-node);
+    margin: 0 1em;
+    display: inline-block;
+    color: white;
+    position: relative;
+    vertical-align: middle;
+}
+
+li .a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 9px;
+    width: 50px;
+    height: 2px;
+    background: var(--default-node);
+    /* z-index: -1; */
+    margin-left: 0px;
+    display: block;
+    text-align: center;
+    border-right: none;
+    transform: translate(100%);
+}
+
+
+/* hide last li css line */
+
+ul li:last-child .a:before {
+    display: none;
+    content: none;
+}
+
+li.visited .a {
+    background-color: var(--theme-color);
+    border: 1px solid var(--theme-color);
+    cursor: pointer;
+}
+
+li.active .a {
+    background-color: var(--theme-color);
+    cursor: pointer;
+}
+
+li.visited .a::before {
+    background-color: var(--theme-color);
+}
+
+li.last-visited .a::before {
+    background-color: var(--default-node);
+}
+
+.mat_icon_size {
+    font-size: 35px;
+    /* padding-top: 10px; */
+}
+
+.status_tittle {
+    text-align: center !important;
+    font-size: var( --small-font-size);
+    width: 8em !important;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.title{
+    font-size:  var(--stepper-font-size);
+    color : var(--theme-color)
+}
+
+.visited-icon{
+    color:var(--status-done); 
+    font-size: 20px;
+}
+
+.not-vistited-icon{
+    color: var(--status-pending-color);
+    font-size: 20px;
+}
+.in-progress-icon{
+    color: var(--badge-icon-in-progress);
+    font-size: 20px;
+    padding-right: 2px;
+}
+.visited-icon{
+    height: 20px; width:20px
+}
+.active-icon{
+    color:var(--theme-color); 
+    font-size: 20px;
+    height: 20px; width:20px
+}
+
+
+@media (max-width: 768px) {
+    li .a:before {
+        display: none;
+    }
+}

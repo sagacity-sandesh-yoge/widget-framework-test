@@ -1,0 +1,6 @@
+<mat-form-field class="w-100" appearance="outline">
+    <mat-label> {{labelName}} </mat-label>
+    <input matInput [formControlName]="formControlName" />
+
+    <ng-content select=".fc-error-message-slot"></ng-content>
+</mat-form-field>

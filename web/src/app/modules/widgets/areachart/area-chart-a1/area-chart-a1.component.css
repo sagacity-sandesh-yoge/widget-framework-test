@@ -1,0 +1,13 @@
+.chart-legend .horizontal-legend li {
+    display: block!important;
+}
+
+mat-card {
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    background-color: var(--mat-background);
+}
+
+.main-title {
+    color: var(--text-normal-color);
+}

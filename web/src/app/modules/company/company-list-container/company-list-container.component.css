@@ -1,0 +1,35 @@
+.fontbold {
+    font-weight: var(--font-bold);
+    letter-spacing: 1px;
+}
+
+.datatext {
+    font-size: var(--header-font-size);
+    margin-bottom: 5px;
+    color: var(--text-dark-color);
+    font-weight: var(--font-light);
+}
+
+.title{
+    color: var(--theme-color);
+}
+
+.expandCol
+{
+    background-color: var(--theme-color);
+    color : white;
+    cursor: pointer;
+    z-index: 999;
+    height: 26px !important;
+    width: 28px !important;
+    padding: 2px;
+}
+
+.expandNone
+{
+    display: none;
+}
+.collapseBlock
+{
+    display: block;
+}

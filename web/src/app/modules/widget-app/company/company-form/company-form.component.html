@@ -1,0 +1,91 @@
+<form *ngIf="wgFormGroup" [formGroup]="wgFormGroup" #formComponent="ngForm">
+  <div class="form-row">
+    <!-- Company Name -->
+    <div class="form-group col-md-4">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Company Name </mat-label>
+        <input
+          matInput
+          placeholder="Company Name"
+          formControlName="companyName"
+          [attr.disabled]="wgGetReadPermission('companyName')"
+        />
+
+        <mat-error *ngIf="isSubmitted && wgFC.companyName.errors">
+          <ng-container *ngFor="let item of wgFC.companyName.errors | keyvalue">
+            <span
+              class="error-msgs"
+              *ngIf="wgFC.companyName.errors[item.key].errorMessage"
+            >
+              {{ wgFC.companyName.errors[item.key].errorMessage }}
+            </span>
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- PAN -->
+    <div class="form-group col-md-4">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>PAN </mat-label>
+        <input matInput placeholder="PAN" formControlName="pan" 
+        [attr.disabled]="wgGetReadPermission('pan')"/>
+
+        <mat-error *ngIf="isSubmitted && wgFC.pan.errors">
+          <ng-container *ngFor="let item of wgFC.pan.errors | keyvalue">
+            <span
+              class="error-msgs"
+              *ngIf="wgFC.pan.errors[item.key].errorMessage"
+            >
+              {{ wgFC.pan.errors[item.key].errorMessage }}
+            </span>
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- Party Code -->
+    <div class="form-group col-md-4">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Party Code </mat-label>
+        <input matInput placeholder="Party Code" formControlName="partyCode" 
+        [attr.disabled]="wgGetReadPermission('partyCode')"/>
+        <mat-error *ngIf="isSubmitted && wgFC.partyCode.errors">
+          <ng-container *ngFor="let item of wgFC.partyCode.errors | keyvalue">
+            <span
+              class="error-msgs"
+              *ngIf="wgFC.partyCode.errors[item.key].errorMessage"
+            >
+              {{ wgFC.partyCode.errors[item.key].errorMessage }}
+            </span>
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center"
+  fxLayoutGap="5px" class="mt-5">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="onBackClick('backBtn_click')"
+    >
+      Back
+    </button>
+    <button
+      *ngIf="wgGetVisiblePermission('add')"
+      type="button"
+      class="btn btn-primary"
+      (click)="onAddClick('on_add')"
+    >
+      Add
+    </button>
+    <button
+      *ngIf="wgGetVisiblePermission('edit')"
+      type="button"
+      class="btn btn-primary"
+      (click)="onEditClick('on_edit')"
+    >
+      Save
+    </button>
+  </div>
+</form>

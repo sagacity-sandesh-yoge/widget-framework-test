@@ -1,0 +1,31 @@
+
+<h1>CK Editor</h1>
+<ckeditor [config]="config" #editor [editor]="Editor" [(data)]="initValue"></ckeditor>
+
+
+<div>
+  <button type="button" class="btn btn-primary mr-2" (click)="next()">Next</button>
+  <button type="button" class="btn btn-primary mr-2" (click)="submit()">Submit</button>
+  <button type="button" class="btn btn-primary" (click)="showApprove()">Show & Approve</button>
+</div>
+
+
+<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [style]="{
+    width: '500px',
+    minWidth: '700px',
+    'text-align': 'left',
+    'font-size': '15px'
+  }" [minY]="100" [maximizable]="true" header="Confirmation" [closable]="true" [baseZIndex]="500">
+
+  <div class="row ">
+    <div class=" col-12 ">
+    
+
+        <div [innerHtml]="getContent()"></div>
+  
+    
+
+      
+    </div>
+  </div>
+</p-dialog>

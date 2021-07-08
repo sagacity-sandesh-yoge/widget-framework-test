@@ -1,0 +1,55 @@
+<div class="dynamic-table-container mb-2">
+    <div class="table-responsive rounded-0 ">
+
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort
+            [matSortDisableClear]="!dataModel.sort.isSort" (matSortChange)="sortData($event)"
+            [matSortActive]="dataModel.sort.defaultSortBy" [matSortDirection]="dataModel.sort.defaultSortDirection">
+
+            <!-- Column -->
+            <ng-container *ngFor="let col of dataModel.columndata" matColumnDef="{{col.field}}">
+
+                <mat-header-cell *matHeaderCellDef [mat-sort-header] [disabled]="!col.isSort"
+                    class="justify-content-center">
+
+                    {{col.name}}
+
+                </mat-header-cell>
+
+                <mat-cell *matCellDef="let element; let i = index " [ngSwitch]="col.colType"
+                    class="justify-content-center">
+                    <ng-container *ngSwitchCase="'date'">
+                        <div class="text-center width">
+                            {{element[col.field] | transformDate}}
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'datetime'">
+                        <span class="text-center width">
+
+                            {{element[col.field] | transformDateTime}}
+                        </span>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="undefined">
+                         <div class="table-cell-data" [title]="element[col.field]">
+                            {{element[col.field]}}
+                         </div>                         
+                    </ng-container>
+                </mat-cell>
+
+            </ng-container>
+
+            <ng-container>
+                <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
+            </ng-container>
+            <mat-row *matRowDef="let row; columns: getDisplayedColumns();" class="example-element-row">
+
+            </mat-row>
+
+
+
+        </table>
+    </div>
+    <mat-paginator [pageSize]="dataModel.pageSize" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+</div>

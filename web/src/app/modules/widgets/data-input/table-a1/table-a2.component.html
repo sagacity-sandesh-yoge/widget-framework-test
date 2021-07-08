@@ -1,0 +1,207 @@
+    
+    <div class="row d-flex justify-content-between div-padding pt-3" *ngIf="dataModel.title || dataModel.legend">
+        <span class="content-heading text-center">
+            {{dataModel.title}}
+        </span>
+        
+        <div class="row pl-2 text-right" *ngIf="dataModel.legend">
+            <div class="form-inline mr-2" *ngFor="let i of dataModel.legend">
+                <mat-icon [class]="i.cssClass">{{i.icon}}</mat-icon>
+                <label class="ml-2 form-check-label">
+                    {{i.name}}
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-12 col-lg-12" [hidden]="dataModel.hideSearchOption">
+            <mat-form-field>
+                <input matInput (keyup)="onSearch($event.target.value)" placeholder="Search">
+            </mat-form-field>
+        </div>
+
+        <div class="col-12 col-lg-12 text-right btn-position" *ngIf="tempPermission && wgGetVisiblePermission('buttonvisible')">
+                <div class=" text-center btn" data-toggle="tooltip" data-placement="top"
+                    (click)="onClick(dataModel,clickEvent.ON_ADD_CLICK)">
+                    <i class="material-icons mat_icon_size pointer addbutton">
+                        add </i>
+                </div>
+        </div>
+    </div>
+
+
+    <div class="" [@openClose]="isOpen ? 'open' : 'closed'">
+        <mat-table [dataSource]="dataSource" multiTemplateDataRows matSort [matSortDisableClear]="!dataModel.isSort"
+            (matSortChange)="sortData($event)" [matSortActive]="dataModel.defaultSortBy"
+            [matSortDirection]="dataModel.defaultSortDirection">
+
+            <!-- Column -->
+            <ng-container *ngFor="let col of dataModel.columndata" matColumnDef="{{col.field}}">
+                <mat-header-cell class="centercell" [ngStyle]="{'flex': col.widthperc +'%'}" *matHeaderCellDef [mat-sort-header] [disabled]="!col.isSort">
+
+                    <span class="width text-center">
+                        {{col.name}}
+                    </span>
+                </mat-header-cell>
+
+                <mat-cell class="centercell text-center" 
+                [ngStyle]="{'flex': col.widthperc +'%'}"
+                *matCellDef="let element; let i = index;"
+                    (click)="col.isClickable && col.clickmethod!='toggleRowExpansion' && element[col.field] ? clickEventHandler(col.clickmethod,i,element,col.eventActionName) : false">
+
+                    <ng-container *ngIf="element[col.field]">
+
+                        <span class="text-center w-100"
+                            [ngClass]="(col.class || col.isAltRowClasses) && element[col.field] ? setColumnClass(col.isAltRowClasses,col.altRowClasses,col.class,element[col.field], element) : ''">
+                            <div class="progress mx-auto   w-75" *ngIf="col.isProgressBar">
+                                <div class="progress-bar" role="progressbar"
+                                    [ngStyle]="{'width':element[col.field]+'%'}" aria-valuenow="element[col.field]"
+                                    aria-valuemin="0" aria-valuemax="element[col.field]">
+                                    <span>
+                                        {{element[col.field] + '%'}}
+                                    </span> </div>
+                            </div>
+
+                            <mat-icon [matTooltip]="col.isTooltip ? col.tooltipText : ''" class="icon"
+                                [matTooltipPosition]="col.tooltipPosition"
+                                [ngStyle]="{'cursor': col.isClickable ? 'pointer' : '' }"
+                                *ngIf="col.isIcon && !col.isExpandable;">
+                                {{element[col.field]}}
+                            </mat-icon>
+
+                            <mat-icon class="expand-icon"
+                                *ngIf="col.isClickable && col.isExpandable;"
+                                [class.example-expanded-row]="expandedElement === element" (click)="isExpand(element) ">
+
+                                <span *ngIf="element.isCollapsable">{{element["symbol"]}}{{element.isExpandable}}</span>
+                                <span
+                                    *ngIf="!element.isCollapsable">{{element["symbol2"]}}{{element.isExpandable}}</span>
+
+                            </mat-icon>
+
+                            <ng-container
+                                *ngIf="!col.isProgressBar && !col.isIcon && !col.isExpandable && !col.isDate;">
+                                {{element[col.field]}}
+                            </ng-container>
+
+                            <div [ngSwitch]="col.columnType">
+                                <ng-container *ngSwitchCase="'date'" > 
+                                    {{element[col.field] | transformDate}}
+    
+                                </ng-container>
+                            </div>
+                          
+
+
+                        </span>
+
+                    </ng-container>
+
+                </mat-cell>
+            </ng-container>
+            <!-- Column -->
+
+            <!-- Expanded Content Column -->
+            <ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                    <div class="w-100 example-element-detail"
+                        [@detailExpand]="!element.isCollapsable ? 'collapsed' :'expanded' ">
+                        <div class="col-12 example-element-description jumbotron background">
+                            <div class="alert alert-secondary" *ngIf="element['desc']" role="alert">
+                                <p class=" m-0">
+                                    <span style="font-weight: 500;">Description Data:</span> {{element["desc"]}}
+                                </p>
+                            </div>
+
+
+                            <div [ngSwitch]="dataModel.template">
+                                
+                                <ng-container *ngSwitchCase="1">
+                                    <ul class="list-inline p-0 m-0 flexlist">
+                                        <li class="list-inline-item" *ngFor="let desc of element.description"
+                                            [ngClass]="desc.multiple ? 'multiple': 'single'">
+                                            <!-- <span *ngIf="desc[col.version]"> {{desc[col.version]}}</span> -->
+                                            <!-- <span *ngFor="let cols of dataModel.expandedColData" > -->
+                                            <span>
+                                                {{desc.tablename}}
+                                            </span>
+
+                                        </li>
+                                    </ul>
+                                </ng-container>
+
+                                <ng-container *ngSwitchCase="2">
+                                    <ul class="list-inline p-0 m-0 flexlist">
+                                        <li class="list-inline-item li-position"
+                                            *ngFor="let desc of element.description"
+                                            [ngClass]="desc.multiple ? 'multiple': 'single'">
+
+                                            <span class="mr-2">
+                                                {{desc.tablename}}
+                                            </span>
+                                            <div *ngFor="let item of desc.items">
+                                                <span [ngClass]="item.version ? 'versions':'false'">
+                                                    {{item.version}}
+                                                </span>
+                                                <span>
+                                                    {{item.filename}}
+                                                </span>
+                                                <mat-icon *ngIf="item.filename; else noFile" class="checked">
+                                                    check_circle
+                                                </mat-icon>
+                                                <ng-template #noFile>
+                                                    <mat-icon class="warnings">
+                                                        error
+                                                    </mat-icon>
+                                                </ng-template>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </ng-container>
+
+
+                                <ng-container *ngSwitchCase="3">
+                                    <mat-grid-list cols="2" rowHeight="3em" *ngFor="let desc of element.description">
+                                        <div *ngFor="let item of desc.items">
+                                            <div *ngIf="desc.VehicleModelName; else combinedDoc">
+                                                <mat-grid-tile> {{desc.VehicleModelName}}</mat-grid-tile>
+                                                <mat-grid-tile> {{item.documentType}}</mat-grid-tile>
+                                            </div>
+                                            <ng-template #combinedDoc>
+                                                <mat-grid-tile> Combined</mat-grid-tile>
+                                                <mat-grid-tile> All</mat-grid-tile>
+                                            </ng-template>
+                                        </div>
+                                    </mat-grid-list>
+
+                                </ng-container>
+                            </div>
+
+                        </div>
+                    </div>
+                </mat-cell>
+            </ng-container>
+            <!-- Expanded Content Column -->
+
+            <ng-container *ngIf="dataModel.showHeader">
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            </ng-container>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"></mat-row>
+
+            <ng-container *ngIf="dataModel.isExpandableRow">
+                <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
+            </ng-container>
+
+        </mat-table>
+
+        <mat-paginator [pageSize]="dataModel.pageSize" [pageSizeOptions]="dataModel.pageSizeOptions"
+            showFirstLastButtons>
+        </mat-paginator>
+    </div>
+

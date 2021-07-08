@@ -1,0 +1,19 @@
+<div #container>
+    <div class="main-title pb-2">{{dataModel.title}}</div>
+
+    <ngx-charts-pie-chart [view]="[container.offsetWidth, dataModel.pieChartConfig.view[1]]" [scheme]="dataModel.pieChartConfig.colorScheme" [results]="dataModel.items" [activeEntries]="dataModel.activeEntries" [legendTitle]="dataModel.pieChartConfig.showLegendTitle"
+        [gradient]="dataModel.pieChartConfig.gradient" [legend]="dataModel.pieChartConfig.showLegend" [legendPosition]="dataModel.pieChartConfig.legendPosition" [labels]="dataModel.pieChartConfig.showLabel" [doughnut]="dataModel.pieChartConfig.doughnut" [arcWidth]="dataModel.pieChartConfig.arcWidth"
+        (select)="selected($event)" (mouseout)="unselected()">
+
+    </ngx-charts-pie-chart>
+
+    <div class="total-label">
+
+        <div class="total-label-content"> Total {{dataModel.title}}
+            <div class="text-center">{{count}}</div>
+
+
+        </div>
+
+    </div>
+</div>

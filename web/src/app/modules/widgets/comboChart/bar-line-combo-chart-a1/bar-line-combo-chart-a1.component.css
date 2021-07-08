@@ -1,0 +1,15 @@
+.main-title {
+    color: var(--text-normal-color);
+}
+
+.nochart {
+    margin: 20px;
+}
+
+.height {
+    height: 100%;
+}
+
+.chart {
+    align-items: center !important;
+}

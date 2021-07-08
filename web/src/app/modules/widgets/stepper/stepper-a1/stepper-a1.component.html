@@ -1,0 +1,53 @@
+<div class="row margin">
+    <div class="col-sm-12 text-center">
+        <div class="row">
+            <div class="col-12">
+
+                <ul class="ml-0; pl-0">
+                    <li *ngFor="let item of dataModel.items" [ngClass]="item.isCompleted ?'pointer':''">
+
+                        <div class="a" [style.backgroundColor]="item.color" (click)="onClick(clickEvent.ON_CLICK,item)" [ngClass]="{'a': item.color == '#009AD9', 'b': item.color == '#06B900' }">
+                            <!--TODO: This color code need to replace with class-->
+                            <i class="material-icons mat_icon_size">
+                                {{item.iconname}}
+                            </i>
+                            <div class="dropdown" *ngIf="item.displayheadericon=='true'">
+                                <img src="../../../../assets//icon.jpg" class="brand-Logo img">
+
+                                <div *ngIf="item.displayheadericon=='true'">
+                                    <div id="myDropdown" class="dropdown-content" (click)="onClick(clickEvent.ON_HOVER_CLICK,item)" *ngIf="item.displayheadericon=='true'">
+
+                                        <div *ngIf="dataModel.isForDashboard; else elseBlock" id="myDropdown" class="dropdown-content">
+
+                                            <div class="text">
+                                                <p class="m-0">No of Permits Requested </p>
+                                                <p class="m-0">No of Permits Granted</p>
+                                                <span class="btn" (click)="onClick(clickEvent.ON_HOVER_CLICK,item)">View Details</span>
+                                            </div>
+                                        </div>
+
+                                        <ng-template #elseBlock>
+                                            <a class="a">Expiry date</a>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                <div id="myDropdown" class="arrow-down" *ngIf="item.displayheadericon=='true'"></div>
+                            </div>
+                        </div>
+                        <div class="status_tittle " [ngClass]="item.name==item.currentnodename ? 'currentstate' : 'css-class-2'">
+                            {{item.name}}
+                            <br>
+                            <div *ngIf="dataModel.isForDashboard">
+                                <div class="status_tittle1" *ngIf="item.countvisible=='1'">
+                                    {{item.tag.taskcount}} ({{item.tag.taskcountpercentage| number:'1.0-2'}}%)
+                                </div>
+                            </div>
+                            <!-- <div class="line" *ngIf="item.name==item.currentnodename"></div> -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

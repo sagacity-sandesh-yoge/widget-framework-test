@@ -1,0 +1,8 @@
+<div #container class="line-chart-a2">
+    <div class="main-title pb-2">{{ dataModel.title }}</div>
+    <ngx-charts-line-chart [view]="[container.offsetWidth, dataModel.lineChartConfig.view[1]]" [scheme]="dataModel.lineChartConfig.colorScheme" [schemeType]="dataModel.lineChartConfig.schemeType" [legend]="dataModel.lineChartConfig.legend" [legendTitle]="dataModel.lineChartConfig.legendTitle"
+        [showXAxisLabel]="dataModel.lineChartConfig.showXAxisLabel" [legendPosition]="dataModel.lineChartConfig.legendPosition" [showYAxisLabel]="dataModel.lineChartConfig.showYAxisLabel" [xAxis]="dataModel.lineChartConfig.xAxis" [yAxis]="dataModel.lineChartConfig.yAxis"
+        [xAxisLabel]="dataModel.lineChartConfig.xAxisBarLabels" [yAxisLabel]="dataModel.lineChartConfig.yAxisLabel" [timeline]="dataModel.lineChartConfig.timeline" [results]="dataModel.items" [autoScale]="dataModel.lineChartConfig.autoScale" [trimXAxisTicks]="dataModel.lineChartConfig.trimXAxisTicks">
+    </ngx-charts-line-chart>
+</div>
+<!--  -->

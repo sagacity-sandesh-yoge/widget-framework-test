@@ -1,0 +1,11 @@
+.chart-legend .horizontal-legend li {
+    display: block!important;
+}
+
+.chart-legend .legend-labels {
+    width :0%!important;
+}
+
+.main-title {
+    color: var(--text-normal-color);
+}

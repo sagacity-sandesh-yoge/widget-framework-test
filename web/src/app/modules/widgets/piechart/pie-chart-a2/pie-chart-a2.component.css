@@ -1,0 +1,35 @@
+/* .chart-legend .horizontal-legend li {
+    display: block!important;
+}
+
+.chart-legend .legend-labels {
+    width :0%!important;
+} */
+
+.main-title {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--content-header-color);
+}
+
+.total-label {
+    position: absolute;
+    /* left: 41%; */
+    left: 50%;
+    top: 47%;
+}
+
+.total-label-content {
+    position: relative;
+    left: -50%;
+}
+
+
+/* .chart-legend .legend-labels {
+    display: flex!important;
+    flex-direction: row!important;
+}
+
+.chart-legend .horizontal-legend li {
+    flex-basis: 33%!important;
+} */

@@ -1,0 +1,21 @@
+<mat-card>
+
+    <span class="main-title">{{dataModel.title}}</span>
+    <div class="progress mt-4">
+        <div class="progress-bar" *ngFor="let element of dataModel.items"
+            [ngClass]="{'bg-primary':element.status == 'Primary', 'bg-success': element.status == 'Success', 'bg-warning':element.status=='Warning','bg-danger':element.status=='Danger'}"
+            [ngStyle]="{'width.%':element.error_count}" data-toggle="tooltip" data-html="true"
+            title="{{element.error_name}}-{{element.error_count|number:'1.2-2'}}%">
+        </div>
+    </div>
+    <div>
+        <ul class="mt-3 progresslist list">
+            <li *ngFor="let elements of dataModel.items">
+                <i class="material-icons mat_icon_size"
+                    [ngClass]="{'text-primary':elements.status == 'Primary', 'text-success': elements.status == 'Success', 'text-warning':elements.status=='Warning','text-danger':elements.status=='Danger'}">{{elements.error_brightness}}</i>{{elements.error_name}}<span
+                   class="blackfont element">{{elements.error_count |number:'1.2-2'}} %</span> </li>
+
+        </ul>
+    </div>
+
+</mat-card>

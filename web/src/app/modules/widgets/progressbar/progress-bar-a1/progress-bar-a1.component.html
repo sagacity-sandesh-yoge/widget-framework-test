@@ -1,0 +1,19 @@
+<mat-card [ngStyle]="dataModel.widgetStyle" class="height">
+    <div class="row p-2">
+        <div class="col-sm-12">
+            <div class="main-title mb-4" [ngStyle]="dataModel.titleStyle">
+
+                {{dataModel.name}}
+
+            </div>
+
+            <div class="mt-1" *ngFor="let item of dataModel.barConfig">
+                <mat-progress-bar [appProgressBarColor]="item.barcolor" class="green-color" mode="determinate"
+                    value="{{item.actualvalue}}" [hidden]="dataModel.isProgressbarHidden">
+                </mat-progress-bar>
+                <div class="float-left mb-5">{{item.title}}</div>
+                <div class="float-right mb-5">{{item.actualvalue}}%</div>
+            </div>
+        </div>
+    </div>
+</mat-card>

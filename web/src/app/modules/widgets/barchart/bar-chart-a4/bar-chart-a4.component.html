@@ -1,0 +1,20 @@
+<div #container>
+    <ngx-charts-bar-vertical-2d
+        [view]="[container.offsetWidth, dataModel.barChartConfig.view[1]]"
+        [scheme]="dataModel.barChartConfig.colorScheme"
+        [schemeType]="dataModel.barChartConfig.schemeType"
+        [showGridLines]="dataModel.barChartConfig.showGridLines"
+        [legendPosition]="dataModel.barChartConfig.legendPosition" 
+        [results]="dataModel.items"
+        [gradient]="dataModel.barChartConfig.gradient" 
+        [xAxis]="dataModel.barChartConfig.xAxis"
+        [yAxis]="dataModel.barChartConfig.yAxis" 
+        [legend]="dataModel.barChartConfig.showLegend"
+        [showXAxisLabel]="dataModel.barChartConfig.showXAxisLabel"
+        [showYAxisLabel]="dataModel.barChartConfig.showYAxisLabel" 
+        [xAxisLabel]="dataModel.barChartConfig.xAxisLabel"
+        [yAxisLabel]="dataModel.barChartConfig.yAxisLabel" 
+        [legendTitle]="dataModel.barChartConfig.legendTitle">
+    </ngx-charts-bar-vertical-2d>
+
+</div>

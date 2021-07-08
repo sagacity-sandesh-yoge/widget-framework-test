@@ -1,0 +1,10 @@
+<!-- <p>area-chart-a1 works!</p> -->
+<mat-card style="height: 100%;">
+
+    <ngx-charts-area-chart [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="dataModel.items" (select)="onSelect($event)">
+    </ngx-charts-area-chart>
+
+
+</mat-card>

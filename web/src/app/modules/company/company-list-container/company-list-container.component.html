@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-12 mt-4">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="heading title d-flex flex-row">
+          <mat-icon> description </mat-icon>
+          Company List
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="text-right">
+          <app-place-holder id="position00"></app-place-holder>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 mt-1">
+        <app-place-holder id="position10"></app-place-holder>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="infoModel.visible"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{
+    width: infoModel.width,
+    minWidth: infoModel.minWidth,
+    'text-align': infoModel.textAlign,
+    'font-size': infoModel.fontSize
+  }"
+  [minY]="infoModel.minY"
+  [maximizable]="infoModel.maximizable"
+  [header]="infoModel.header"
+  [baseZIndex]="infoModel.baseZIndex"
+>
+  <div>
+    <app-place-holder id="position100"></app-place-holder>
+  </div>
+</p-dialog>

@@ -1,0 +1,94 @@
+<div class="row ">
+  <div class="col-12 ">
+
+    <form *ngIf="wgFormGroup" [formGroup]="wgFormGroup" #formComponent="ngForm">
+      <ng-container *ngFor="let d of dataModel.filter.controls">
+        <div class="form-row">
+          <div class="form-group col-md-6 col-lg-12">
+            <ng-container [ngSwitch]="d.controlType">
+              <ng-container *ngSwitchCase="CONTROL_TYPE.TEXTBOX">
+
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-label> {{d.labelName}} </mat-label>
+                  <input matInput [formControlName]="d.controlName" />
+                  
+                  <mat-error *ngIf="isSubmitted && wgFC[d.controlName].errors">
+                    <ng-container *ngFor="let item of wgFC[d.controlName].errors | keyvalue">
+                      <div *ngIf="wgFC[d.controlName].errors[item.key].errorMessage">
+                        {{wgFC[d.controlName].errors[item.key].errorMessage}}
+                      </div>
+                    </ng-container>
+                  </mat-error>
+                </mat-form-field>
+
+              </ng-container>
+
+
+              <ng-container *ngSwitchCase="CONTROL_TYPE.OPERATOR">
+
+              
+                  <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>  {{d.labelName}} </mat-label>
+                    <mat-select [formControlName]="d.controlName"
+                    [attr.disabled]="setEnableDisableDate(d.controlName, d.startControlName, d.endControlName)">
+                      <mat-option>Select Operator</mat-option>       
+                      <mat-option *ngFor="let d of dataModel.operatorList" [value]="d.code">
+                        {{ d.displayname }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+        
+              </ng-container>
+
+              <ng-container *ngSwitchCase="CONTROL_TYPE.DATE">
+                
+                  <mat-form-field class="w-100 disabled" appearance="outline">
+                    <input matInput [placeholder]="d.labelName" 
+                    [matDatepicker]="picker1" [formControlName]="d.controlName"
+                       />
+                    <mat-datepicker-toggle matSuffix [for]="picker1">
+                      <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+        
+                    <mat-error *ngIf="isSubmitted && wgFC[d.controlName].errors">
+                      <ng-container *ngFor="let item of wgFC[d.controlName].errors | keyvalue">
+                        <div *ngIf="wgFC[d.controlName].errors[item.key].errorMessage">
+                          {{ wgFC[d.controlName].errors[item.key].errorMessage }}
+                        </div>
+                      </ng-container>
+                    </mat-error>
+                  </mat-form-field>
+
+              </ng-container>
+
+            </ng-container>
+          </div>
+        </div>
+
+      </ng-container>
+    </form>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <button type="button" class="btn-reset btn-primary btn-sm mb-2"
+    (click)="resetFilter(EVENT_NAME.ON_FILTER_RESET)">Reset </button>
+
+  <button type="button" class="btn-filter btn-primary btn-sm mb-2 ml-2"
+    (click)="applyFilter(EVENT_NAME.ON_FILTER_APPLY)">Apply
+  </button>
+</div>
+
+
+
+<!-- <app-saga-textbox [formControlName]="d.controlName" [labelName]="d.labelName"> -->
+
+<!-- <div class="fc-error-message-slot"> 
+                     <app-saga-input-error-message
+                     [formControlName]="d.controlName"
+                     [wgFC]="wgFC"
+                     [isSubmitted]="isSubmitted"
+                     ></app-saga-input-error-message>
+                   </div>             -->
+<!-- </app-saga-textbox> -->

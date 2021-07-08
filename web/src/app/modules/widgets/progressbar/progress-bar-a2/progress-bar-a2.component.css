@@ -1,0 +1,39 @@
+.mat_icon_size {
+    font-size: 16px;
+    /* padding-top: 27px; */
+    vertical-align: middle;
+    padding-right: 25px;
+}
+
+.example-tooltip-red {
+    background: #b71c1c;
+}
+
+.progresslist li {
+    color: var(--text-normal-color);
+    font-size: var(--normal-font-size);
+    margin-bottom: 5px;
+}
+
+.blackfont {
+    color: var(--text-dark-color);
+    font-weight: var(--font-normal);
+}
+
+mat-card {
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    background-color: var(--mat-background);
+}
+
+.main-title {
+    color: var(--text-normal-color);
+}
+
+.list {
+    list-style: none;
+}
+
+.element {
+    float: right;
+}

@@ -1,0 +1,7 @@
+<mat-error *ngIf="isSubmitted && wgFC[formControlName].errors">
+    <ng-container *ngFor="let item of wgFC[formControlName].errors | keyvalue">
+      <div *ngIf="wgFC[formControlName].errors[item.key].errorMessage">
+        {{wgFC[formControlName].errors[item.key].errorMessage}}
+      </div>
+    </ng-container>
+</mat-error>
